@@ -9,15 +9,20 @@ import (
 
 func main() {
 	sigs := make(chan os.Signal, 1)
-	
 	signal.Notify(sigs, syscall.SIGINT, syscall.SIGTERM)
 
 	done := make(chan bool, 1)
 
 	go func() {
-		sig := <- sigs
-		fmt.Println()
-		fmt.Println(sig)
+		sig := <-sigs
+
+		switch sig {
+		case syscall.SIGINT:
+			fmt.Println("\nreceived SIGINT")
+		case syscall.SIGTERM:
+			fmt.Println("\nreceived SIGTERM")
+		}
+
 		done <- true
 	}()
 
