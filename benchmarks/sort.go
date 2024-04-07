@@ -5,7 +5,16 @@ import (
 	"time"
 )
 
-func GenerateRandomSlice(size int) []int {
+func GenerateRandomSliceUnoptimized(size int) []int {
+	rand.New(rand.NewSource(time.Now().UnixNano()))
+	slice := []int{}
+	for i := 0; i < size; i++ {
+		slice = append(slice, rand.Intn(1000))
+	}
+	return slice
+}
+
+func GenerateRandomSliceOptimized(size int) []int {
 	rand.New(rand.NewSource(time.Now().UnixNano()))
 	slice := make([]int, size)
 	for i := 0; i < size; i++ {

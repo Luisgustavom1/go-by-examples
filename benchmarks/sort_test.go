@@ -42,9 +42,18 @@ func TestSortSlice(t *testing.T) {
 }
 
 // go test -bench=. -cpu=8 -benchmem -count 3 -benchtime=5s
-func BenchmarkProcessSlice(b *testing.B) {
-	sliceSize := 1000
-	slice := s.GenerateRandomSlice(sliceSize)
+func BenchmarkProcessSliceUnoptimzed(b *testing.B) {
+	sliceSize := 100000
+	slice := s.GenerateRandomSliceUnoptimized(sliceSize)
+
+	for i := 0; i < b.N; i++ {
+		s.Sort(slice)
+	}
+}
+
+func BenchmarkProcessSliceOptimized(b *testing.B) {
+	sliceSize := 100000
+	slice := s.GenerateRandomSliceOptimized(sliceSize)
 
 	for i := 0; i < b.N; i++ {
 		s.Sort(slice)
