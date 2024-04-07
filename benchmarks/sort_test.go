@@ -41,7 +41,8 @@ func TestSortSlice(t *testing.T) {
 	}
 }
 
-// go test -bench=. -cpu=8 -benchmem -count 3 -benchtime=5s
+// go test -bench=. -cpu=8 -benchmem -count 1 -benchtime=5s -memprofile=sort.mprof
+// go tool pprof benchmarks.test sort.mprof
 func BenchmarkProcessSliceUnoptimzed(b *testing.B) {
 	sliceSize := 100000
 	slice := s.GenerateRandomSliceUnoptimized(sliceSize)
