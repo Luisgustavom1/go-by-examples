@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-func generateRandomSlice(size int) []int {
+func GenerateRandomSlice(size int) []int {
 	rand.New(rand.NewSource(time.Now().UnixNano()))
 	slice := make([]int, size)
 	for i := 0; i < size; i++ {
@@ -23,13 +23,3 @@ func Sort(slice []int) {
 		}
 	}
 }
-
-// func BenchmarkProcessSlice(b *testing.B) {
-// 	sliceSize := 1000
-// 	slice := generateRandomSlice(sliceSize)
-
-// 	b.ResetTimer()
-// 	for i := 0; i < b.N; i++ {
-// 		sort(slice)
-// 	}
-// }
