@@ -38,23 +38,23 @@ func main() {
 	}()
 
 	for w := 0; w < 100; w++ {
-		go func() {
+		go func(i int) {
 			write := writeOp{
-				key: w,
-				val: w * 2,
+				key: i,
+				val: i * 2,
 				res: make(chan bool),
 			}
 			writes <- write
 			<-write.res
 			atomic.AddUint64(&writeOps, 1)
 			time.Sleep(time.Millisecond)
-		}()
+		}(w)
 	}
 
 	for r := 0; r < 100; r++ {
-		go func() {
+		go func(i int) {
 			read := readOp{
-				key: r,
+				key: i,
 				res: make(chan int),
 			}
 			reads <- read
@@ -62,7 +62,7 @@ func main() {
 			fmt.Println("reading -> key: ", read.key, "val: ", res)
 			atomic.AddUint64(&readOps, 1)
 			time.Sleep(time.Millisecond)
-		}()
+		}(r)
 	}
 
 	time.Sleep(time.Second)
