@@ -41,6 +41,11 @@ func TestSortSlice(t *testing.T) {
 	}
 }
 
+// Cpu profiling:
+// go test -bench=. -cpu=8 -benchmem -count 1 -benchtime=5s -cpuprofile=sort.prof
+// go tool pprof benchmarks.test sort.prof
+
+// Memory profiling:
 // go test -bench=. -cpu=8 -benchmem -count 1 -benchtime=5s -memprofile=sort.mprof
 // go tool pprof benchmarks.test sort.mprof
 func BenchmarkProcessSliceUnoptimzed(b *testing.B) {
