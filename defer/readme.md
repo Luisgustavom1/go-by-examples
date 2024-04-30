@@ -5,7 +5,7 @@
 ## Use case
 [json package](https://pkg.go.dev/encoding/json)
 
-// https://go.dev/src/encoding/json/encode.go#:~:text=282-,//%20jsonError%20is%20an%20error%20wrapper%20type%20for%20internal%20use%20only.,%7D,-305%C2%A0%C2%A0
+// [link to example](https://go.dev/src/encoding/json/encode.go#:~:text=282-,//%20jsonError%20is%20an%20error%20wrapper%20type%20for%20internal%20use%20only.,%7D,-305%C2%A0%C2%A0)
 // jsonError is an error wrapper type for internal use only.
 // Panics with errors are wrapped in jsonError so that the top-level recover
 // can distinguish intentional panics from this package.
